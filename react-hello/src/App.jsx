@@ -15,3 +15,5 @@ export default App
 
 // npm run build でビルド
 // dist というフォルダができるからそれを公開すればOK
+
+// vite.config.js viteの設定
