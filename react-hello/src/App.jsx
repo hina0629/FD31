@@ -1,13 +1,16 @@
 import { useState } from 'react'
-import './App.css'
+import styles from './App.module.css'
 
 function App() {
   const [count, setCount] = useState(0)
 
   return (
-    <>
-      <h1>Hello React</h1>
-    </>
+    <div className={styles.app}>
+      <main className={styles.main}>
+        <h2 className={styles.sectionTitle}>Anime Station</h2>
+        <div>ここになんか作品</div>
+      </main>
+    </div>
   )
 }
 
