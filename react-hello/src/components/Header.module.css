@@ -1,0 +1,22 @@
+.header {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 0.75rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: var(--text);
+    white-space: nowrap;
+}
+
+.logo img {
+    width: 40px;
+    height: 40px;
+}
