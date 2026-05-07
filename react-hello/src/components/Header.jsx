@@ -3,9 +3,10 @@ import styles from './Header.module.css'
 
 function Header() {
   return (
-    <div>
-
-    </div>
+    <header className={styles.header}>
+      
+      <div className={styles.title}>Anime Station</div>
+    </header>
   )
 }
 
