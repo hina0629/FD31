@@ -1,7 +1,10 @@
 
-function WorkList() {
+function WorkList({works}) {
   return (
-    <div>WorkList</div>
+    <div>
+      作品リスト
+      <div>{works.length}作品</div>
+    </div>
   )
 }
 
