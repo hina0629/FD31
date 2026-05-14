@@ -1,9 +1,10 @@
+import styles from './WorkList.module.css'
 
 function WorkList({ works, onSelect }) {
   return (
     <div>
-      <div>{works.length}作品</div>
-      <div>
+      <div className={styles.count}>{works.length}作品</div>
+      <div className={styles.grid}>
         {
           works.map(work => (
             <div key={work.id} onClick={() => onSelect(work)}>
