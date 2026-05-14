@@ -2,8 +2,16 @@
 function WorkList({works}) {
   return (
     <div>
-      作品リスト
       <div>{works.length}作品</div>
+      <div>
+        {
+          works.map(work => (
+            <div>
+              {work.title}
+            </div>
+          ))
+        }
+      </div>
     </div>
   )
 }
