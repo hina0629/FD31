@@ -1,6 +1,7 @@
 import styles from './App.module.css'
 import Footer from './components/Footer'
 import Header from './components/Header'
+import WorkList from './components/WorkList'
 
 function App() {
 
@@ -11,6 +12,7 @@ function App() {
       <main className={styles.main}>
         <h2 className={styles.sectionTitle}>Anime Station</h2>
         <div>ここになんか作品</div>
+        <WorkList />
       </main>
 
       <Footer />
