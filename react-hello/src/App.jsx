@@ -14,7 +14,7 @@ function App() {
 
       <main className={styles.main}>
         <h2 className={styles.sectionTitle}>Anime Station</h2>
-        <div>ここになんか作品</div>
+        {/* <div>ここになんか作品</div> */}
         <WorkList works={works} />
         {/* {...works} でも可能 */}
       </main>
