@@ -2,6 +2,9 @@ import styles from './App.module.css'
 import Footer from './components/Footer'
 import Header from './components/Header'
 import WorkList from './components/WorkList'
+// モックデータの読み込み
+// {} 名前付きエクスポート（defaultがないやつ）の時に必要
+import { works } from './data/works';
 
 function App() {
 
@@ -12,7 +15,8 @@ function App() {
       <main className={styles.main}>
         <h2 className={styles.sectionTitle}>Anime Station</h2>
         <div>ここになんか作品</div>
-        <WorkList />
+        <WorkList works={works} />
+        {/* {...works} でも可能 */}
       </main>
 
       <Footer />
