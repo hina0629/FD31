@@ -6,7 +6,8 @@ function WorkList({works}) {
       <div>
         {
           works.map(work => (
-            <div>
+            <div key={work.id}>
+              {/* keyを入れないと、表示はされるけどエラーが出る */}
               {work.title}
             </div>
           ))
