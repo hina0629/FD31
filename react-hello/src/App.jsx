@@ -6,8 +6,15 @@ import WorkList from './components/WorkList'
 // モックデータの読み込み
 // {} 名前付きエクスポート（defaultがないやつ）の時に必要
 import { works } from './data/works';
+// useStateをインポート
+import { useState } from 'react';
 
 function App() {
+  // selectedWork：状態を管理するための変数
+  // useStateにデフォルト値を付けたいときは()の中に書く
+  // 入れ物を作った
+  // 代入するときに＝は使ってはいけないからsetSelectedWork
+  const [selectedWork, setSelectedWork] = useState(null)
 
   return (
     <div className={styles.app}>
@@ -16,12 +23,16 @@ function App() {
       <main className={styles.main}>
         <h2 className={styles.sectionTitle}>作品リスト</h2>
         {/* <div>ここになんか作品</div> */}
-        <WorkList works={works} onSelect={(work) => console.log(work)} />
+        <WorkList works={works} onSelect={(work) => setSelectedWork(work)} />
         {/* {...works} でも可能 */}
       </main>
 
       <Footer />
-      <Modal />
+
+    {/* selectedWorkがあればモーダルを表示 */}
+    {selectedWork && (
+      <Modal work={selectedWork} onClose={() => setSelectedWork(null)} />
+    )} 
     </div>
   )
 }
