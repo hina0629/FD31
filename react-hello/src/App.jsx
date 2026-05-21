@@ -1,6 +1,7 @@
 import styles from './App.module.css'
 import Footer from './components/Footer'
 import Header from './components/Header'
+import Modal from './components/Modal';
 import WorkList from './components/WorkList'
 // モックデータの読み込み
 // {} 名前付きエクスポート（defaultがないやつ）の時に必要
@@ -20,6 +21,7 @@ function App() {
       </main>
 
       <Footer />
+      <Modal />
     </div>
   )
 }
