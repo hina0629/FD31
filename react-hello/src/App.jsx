@@ -17,15 +17,22 @@ function App() {
   // 代入するときに＝は使ってはいけないからsetSelectedWork
   const [selectedWork, setSelectedWork] = useState(null);
   const [query, setQuery] = useState("");
+  const [selectedGenre, setSelectedGenre] = useState('すべて')
+
+  // ジャンル（純粋なJS）
+  const genres = ['すべて', ...new Set(works.map((w) => w.genre))]
 
   // 全作品worksから title を検索キーワード query でリアルタイム検索
-  const filteredWorks = works.filter((work) => work.title.includes(query))
+  // const filteredWorks = works.filter((work) => work.title.includes(query))
+  const filteredWorks = works
+      .filter((w) => selectedGenre === 'すべて' || w.genre === selectedGenre)
+      .filter((w) => w.title.includes(query))
 
   return (
     <div className={styles.app}>
       <Header />
 
-      <SearchBar query={query} onQueryChange={setQuery} />
+      <SearchBar query={query} onQueryChange={setQuery} genres={genres} selectedGenre={selectedGenre} onGenreChange={setSelectedGenre} />
 
       <main className={styles.main}>
         <h2 className={styles.sectionTitle}>作品リスト</h2>

@@ -1,0 +1,54 @@
+.searchBar {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+  padding: 1rem;
+}
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.sectionTitle {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #374151;
+  margin: 0;
+}
+.input {
+  padding: 0.6rem 1rem;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  outline: none;
+}
+.input:focus {
+  border-color: #6b7280;
+}
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.filter {
+  padding: 0.35rem 1rem;
+  border: 1px solid #d1d5db;
+  border-radius: 999px;
+  background: white;
+  color: #374151;
+  font-size: 0.875rem;
+  cursor: pointer;
+}
+.filter:hover {
+  background: #f3f4f6;
+}
+.filterActive {
+  padding: 0.35rem 1rem;
+  border: 1px solid #1f2937;
+  border-radius: 999px;
+  background: #1f2937;
+  color: white;
+  font-size: 0.875rem;
+  cursor: pointer;
+}
