@@ -6,11 +6,14 @@ import SearchBar from "./components/SearchBar";
 import WorkList from "./components/WorkList";
 // モックデータの読み込み
 // {} 名前付きエクスポート（defaultがないやつ）の時に必要
-import { works } from "./data/works";
+// import { works } from "./data/works";
+import useWorks from "./hooks/useWorks";
 // useStateをインポート
 import { useEffect, useState } from "react";
 
 function App() {
+  // カスタムHooksを使って、 works を読み込み
+  const { works } = useWorks()
   // selectedWork：状態を管理するための変数
   // useStateにデフォルト値を付けたいときは()の中に書く
   // 入れ物を作った
