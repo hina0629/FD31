@@ -8,7 +8,7 @@ import WorkList from "./components/WorkList";
 // {} 名前付きエクスポート（defaultがないやつ）の時に必要
 import { works } from "./data/works";
 // useStateをインポート
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function App() {
   // selectedWork：状態を管理するための変数
@@ -27,6 +27,19 @@ function App() {
   const filteredWorks = works
       .filter((w) => selectedGenre === 'すべて' || w.genre === selectedGenre)
       .filter((w) => w.title.includes(query))
+
+  // useEffect(() => {
+    // 何か状態が変わるたびに実行される
+  //   console.log('毎回実行')
+  // });
+
+  // useEffect(() => {
+  //   console.log('初回のみ実行')
+  // }, []);
+
+  useEffect(() => {
+    console.log('ジャンルが変更されたときに実行')
+  }, [selectedGenre]);
 
   return (
     <div className={styles.app}>
