@@ -1,6 +1,8 @@
 import styles from "./App.module.css";
+import FlashMessage from "./components/Flashmessage";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
+import LoadingModal from "./components/LoadingModal";
 import Modal from "./components/Modal";
 import SearchBar from "./components/SearchBar";
 import WorkList from "./components/WorkList";
@@ -13,7 +15,7 @@ import { useEffect, useState } from "react";
 
 function App() {
   // カスタムHooksを使って、 works を読み込み
-  const { works } = useWorks()
+  const { works, loading, error } = useWorks()
   // selectedWork：状態を管理するための変数
   // useStateにデフォルト値を付けたいときは()の中に書く
   // 入れ物を作った
@@ -46,7 +48,11 @@ function App() {
 
   return (
     <div className={styles.app}>
+      <LoadingModal isOpen={loading} message="Loading..." />
+
       <Header />
+
+      <FlashMessage message={error} type="error" />
 
       <SearchBar query={query} onQueryChange={setQuery} genres={genres} selectedGenre={selectedGenre} onGenreChange={setSelectedGenre} />
 
