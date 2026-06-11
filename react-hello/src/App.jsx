@@ -6,6 +6,7 @@ import LoadingModal from "./components/LoadingModal";
 import Modal from "./components/Modal";
 import SearchBar from "./components/SearchBar";
 import WorkList from "./components/WorkList";
+import { ThemeContext } from "./context/ThemeContext";
 // モックデータの読み込み
 // {} 名前付きエクスポート（defaultがないやつ）の時に必要
 // import { works } from "./data/works";
@@ -16,6 +17,9 @@ import { useEffect, useState } from "react";
 function App() {
   // カスタムHooksを使って、 works を読み込み
   const { works, loading, error } = useWorks()
+
+    const [ theme, setTheme ] = useState('light');
+  
   // selectedWork：状態を管理するための変数
   // useStateにデフォルト値を付けたいときは()の中に書く
   // 入れ物を作った
@@ -33,6 +37,15 @@ function App() {
       .filter((w) => selectedGenre === 'すべて' || w.genre === selectedGenre)
       .filter((w) => w.title.includes(query))
 
+
+  // テーマ切り替え関数
+  const toggleTheme = () => {
+    // 現在のテーマがライトならダークに、ダークならライトに
+    const currentTheme = (theme === 'light') ? 'dark' : 'light'
+    // テーマをStateに保存する
+    setTheme(currentTheme)
+  }
+
   // useEffect(() => {
     // 何か状態が変わるたびに実行される
   //   console.log('毎回実行')
@@ -47,29 +60,31 @@ function App() {
   }, [selectedGenre]);
 
   return (
-    <div className={styles.app}>
-      <LoadingModal isOpen={loading} message="Loading..." />
+    <ThemeContext.Provider value={{ theme, toggleTheme }} >
+      <div className={styles.app} data-theme={theme}>
+        <LoadingModal isOpen={loading} message="Loading..." />
 
-      <Header />
+        <Header />
 
-      <FlashMessage message={error} type="error" />
+        <FlashMessage message={error} type="error" />
 
-      <SearchBar query={query} onQueryChange={setQuery} genres={genres} selectedGenre={selectedGenre} onGenreChange={setSelectedGenre} />
+        <SearchBar query={query} onQueryChange={setQuery} genres={genres} selectedGenre={selectedGenre} onGenreChange={setSelectedGenre} />
 
-      <main className={styles.main}>
-        <h2 className={styles.sectionTitle}>作品リスト</h2>
-        {/* <div>ここになんか作品</div> */}
-        <WorkList works={filteredWorks} onSelect={(work) => setSelectedWork(work)} />
-        {/* {...works} でも可能 */}
-      </main>
+        <main className={styles.main}>
+          <h2 className={styles.sectionTitle}>作品リスト</h2>
+          {/* <div>ここになんか作品</div> */}
+          <WorkList works={filteredWorks} onSelect={(work) => setSelectedWork(work)} />
+          {/* {...works} でも可能 */}
+        </main>
 
-      <Footer />
+        <Footer />
 
-      {/* selectedWorkがあればモーダルを表示 */}
-      {selectedWork && (
-        <Modal work={selectedWork} onClose={() => setSelectedWork(null)} />
-      )}
-    </div>
+        {/* selectedWorkがあればモーダルを表示 */}
+        {selectedWork && (
+          <Modal work={selectedWork} onClose={() => setSelectedWork(null)} />
+        )}
+      </div>
+    </ThemeContext.Provider>
   );
 }
 

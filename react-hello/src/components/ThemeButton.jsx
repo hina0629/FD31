@@ -1,14 +1,22 @@
-import styles from "./ThemeButton.module.css";
+// rfce
+import styles from './ThemeButton.module.css'
+// テーマコンテキストをインポート
+import { ThemeContext } from '../context/ThemeContext';
+import { useContext } from "react";
+
 
 function ThemeButton() {
-  return (
-    <div>
-      <button type="button" className={styles.button}>
-        <span className={styles.dot} aria-hidden="true" />
-        <span>Light</span>
-      </button>
-    </div>
-  );
+    const { theme, toggleTheme } = useContext(ThemeContext)
+
+    return (
+        <button
+            type="button"
+            className={styles.button}
+            onClick={toggleTheme}>
+            <span className={styles.dot} aria-hidden="true" />
+            <span>{theme}</span>
+        </button>
+    )
 }
 
-export default ThemeButton;
+export default ThemeButton
