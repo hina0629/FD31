@@ -1,11 +1,14 @@
 import styles from "./Layout.module.css";
-import { Home, Info } from "lucide-react";
+import { Home, Info, Sparkles } from "lucide-react";
 
 function Layout({ children, onNavigate }) {
   return (
     <div className={styles.wrapper}>
       <header className={styles.header}>
-        <h1>サイトタイトル</h1>
+        <h1 className={styles.brand}>
+          <Sparkles size={24} className={styles.brandIcon}/>
+          サイトタイトル
+        </h1>
 
         <nav className={styles.nav}>
           {/* aタグよりbuttonタグ推奨 */}
