@@ -25,7 +25,7 @@ const itemVariants = {
 
 function About() {
   return (
-    <section
+    <Motion.section
       className={styles.page}
       variants={pageVariants}
       initial="hidden"
@@ -58,7 +58,7 @@ function About() {
           <li>ナビゲーションは onNavigate props で App.jsx の state を更新します。</li>
         </ul>
       </div>
-    </section>
+    </Motion.section>
   )
 }
 
