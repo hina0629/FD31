@@ -1,5 +1,5 @@
 import styles from "./Layout.module.css";
-import { Home } from "lucide-react";
+import { Home, Info } from "lucide-react";
 
 function Layout({ children, onNavigate }) {
   return (
@@ -13,7 +13,10 @@ function Layout({ children, onNavigate }) {
             <Home size={20}/>
             Home
           </button>
-          <button onClick={() => onNavigate('about')} className={styles.navButton}>About</button>
+          <button onClick={() => onNavigate('about')} className={styles.navButton}>
+            <Info size={20}/>
+            About
+            </button>
         </nav>
       </header>
 
