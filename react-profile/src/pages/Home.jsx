@@ -1,6 +1,8 @@
 import { Code2, Target } from 'lucide-react'
 import { motion } from 'motion/react'
 import styles from './Page.module.css'
+
+// ユーザーのデータ
 import user from '../data/User'
 
 const Motion = motion
