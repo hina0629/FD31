@@ -1,5 +1,5 @@
 import styles from "./Layout.module.css";
-import { Home, Info, Sparkles } from "lucide-react";
+import { Home, Info, Sparkles, BadgeCheck } from "lucide-react";
 
 function Layout({ children, onNavigate }) {
   return (
@@ -28,7 +28,10 @@ function Layout({ children, onNavigate }) {
       </main>
 
       <footer className={styles.footer}>
-        <p>&copy; 2026 My App</p>
+        <p>
+          <BadgeCheck size={16} aria-hidden="true"/>
+          2026 My App
+        </p>
       </footer>
     </div>
   )
