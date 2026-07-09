@@ -1,4 +1,4 @@
-# [Conventional Commits](https://www.conventionalcommits.org/ja/v1.0.0/) に基づく正しいコミットメッセージの書き方
+コミットメッセージの書き方
 
 [Conventional Commits 1.0.0](https://www.conventionalcommits.org/ja/v1.0.0/) の仕様に準拠した、人間と機械の双方にとって読みやすいコミットメッセージの完全なガイドラインです。
 
