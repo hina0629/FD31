@@ -1,8 +1,11 @@
+import Link from "next/link";
+
 // rfc
 export default function Header() {
   return (
     <div>
-      ここはヘッダーです
+      <Link href='/'>Next Salon</Link>
+      <Link href='/shop'>店舗</Link>
     </div>
   )
 }
