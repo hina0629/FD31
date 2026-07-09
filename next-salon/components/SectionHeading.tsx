@@ -1,7 +1,24 @@
 import React from 'react'
 
-export default function SectionHeading() {
+// データ型を定義
+// 設計書みたいな感じ
+// このコンポーネントではこれらが使われるんだなとかがわかる
+type SectionHeadingProps = {
+  eyebrow?: string
+  title?: string
+  description?: string
+}
+
+export default function SectionHeading({ eyebrow, title, description }: SectionHeadingProps) {
   return (
-    <div>SectionHeading</div>
+    <div className="max-w-2xl">
+      <p className="text-sm font-medium tracking-[0.32em] text-rose-600 uppercase">
+        {eyebrow}
+      </p>
+      <h2 className="mt-3 text-3xl font-semibold text-slate-950 sm:text-4xl">
+        {title}
+      </h2>
+      <p className="mt-4 text-base leading-7 text-slate-600">{description}</p>
+    </div>
   )
 }
