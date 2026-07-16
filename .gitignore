@@ -2,3 +2,4 @@
 /kadai
 siryou/
 .env.development
+.DS_Store

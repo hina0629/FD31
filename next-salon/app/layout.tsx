@@ -14,7 +14,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ja">
-      <body className="min-h-full flex flex-col">
+      <body>
         <Header />
         <main className="mx-auto max-w-7xl px-8 py-4">
           {children}
