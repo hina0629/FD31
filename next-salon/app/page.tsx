@@ -3,11 +3,13 @@ import SectionHeading from "@/components/SectionHeading";
 // 店舗カードコンポーネント
 import ShopCard from "@/components/ShopCard";
 // モックデータ
-import { MOCK_SHOPS } from "@/data/MockData";
+// import { MOCK_SHOPS } from "@/data/MockData";
+import { getShops } from "@/lib/services/shops";
 
-export default function Home() {
+export default async function Home() {
   // 今後APIなどから持ってくることを見越して一回 const を挟む
-  const shops = MOCK_SHOPS;
+  // const shops = MOCK_SHOPS;
+  const shops = await getShops()
   
   return (
     <div>
