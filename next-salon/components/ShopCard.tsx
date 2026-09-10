@@ -2,7 +2,11 @@ import Image from "next/image"
 import Link from "next/link"
 import type { Shop } from "@/types/shop"
 
-export default function ShopCard({ shop }: { shop: Shop }) {
+type ShopCardProps = {
+  shop: Shop
+}
+
+export default function ShopCard({ shop }: ShopCardProps) {
   return (
     <article className="group overflow-hidden rounded-3xl bg-white shadow-sm">
       <div className="relative h-72 overflow-hidden">
