@@ -14,6 +14,7 @@ export default async function ShopDetailPage({ params }: Props) {
 
   // 404 の時に NotFound 画面を出す
   // Next.js の機能である
+  // トップページにリダイレクトもあり
   if (!shop) {
     notFound()
   }
