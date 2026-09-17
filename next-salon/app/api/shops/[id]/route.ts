@@ -17,6 +17,11 @@ export async function GET(_request: Request, { params }: Params) {
     // 配列のデータの検索方法
     const shop = MOCK_SHOPS.find((s) => s.id === id)
 
+    // ショップが存在しない場合は404を返す
+    if (!shop) {
+        return NextResponse.json({ error: "not found" }, { status: 404 })
+    }
+
     // JSONでレスポンス
     // return でデータを渡す
     return NextResponse.json({ shop })
