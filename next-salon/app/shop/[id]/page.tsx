@@ -1,3 +1,4 @@
+import ShopHero from '@/components/ShopHero'
 import { getShop } from '@/lib/services/shops'
 import { notFound } from 'next/navigation'
 import React from 'react'
@@ -23,7 +24,8 @@ export default async function ShopDetailPage({ params }: Props) {
     <div>
       {/* オプショナル型 */}
       {/* 店名がなければエラーではなく、undefined を出力 */}
-      <h1 className="text-2xl font-bold">{shop?.name}</h1>
+      {/* <h1 className="text-2xl font-bold">{shop?.name}</h1> */}
+      <ShopHero shop={shop} />
     </div>
   )
 }
