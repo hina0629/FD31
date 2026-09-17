@@ -12,11 +12,10 @@ export default async function ShopDetailPage({ params }: Props) {
   const shop = await getShop(id)
 
   return (
-  <div>
-    <h1>Shop Details</h1>
-    {/* オプショナル型 */}
-    {/* 店名がなければエラーではなく、undefined を出力 */}
-    <p>{shop?.name}</p>
-  </div>
+    <div>
+      {/* オプショナル型 */}
+      {/* 店名がなければエラーではなく、undefined を出力 */}
+      <h1 className="text-2xl font-bold">{shop?.name}</h1>
+    </div>
   )
 }
