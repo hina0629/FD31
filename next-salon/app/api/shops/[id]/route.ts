@@ -4,7 +4,7 @@ import { NextResponse } from "next/server";
 // データを受け取る型を定義
 type Params = { params: Promise<{ id: string}> }
 
-export async function GET({ params }: Params) {
+export async function GET(_request: Request, { params }: Params) {
     // Promise は非同期なので await が使える
     // const { id }　は　Promise<{ id: string}> のデータ型と一致している
     const { id } = await params
