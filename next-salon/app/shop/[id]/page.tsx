@@ -1,4 +1,5 @@
 import { getShop } from '@/lib/services/shops'
+import { notFound } from 'next/navigation'
 import React from 'react'
 
 type Props = {
@@ -10,6 +11,12 @@ export default async function ShopDetailPage({ params }: Props) {
   const { id } = await params
   // next-salon/lib/services/shops.ts の店舗詳細取得から取得する
   const shop = await getShop(id)
+
+  // 404 の時に NotFound 画面を出す
+  // Next.js の機能である
+  if (!shop) {
+    notFound()
+  }
 
   return (
     <div>
