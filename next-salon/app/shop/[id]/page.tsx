@@ -14,6 +14,8 @@ export default async function ShopDetailPage({ params }: Props) {
   return (
   <div>
     <h1>Shop Details</h1>
+    {/* オプショナル型 */}
+    {/* 店名がなければエラーではなく、undefined を出力 */}
     <p>{shop?.name}</p>
   </div>
   )
