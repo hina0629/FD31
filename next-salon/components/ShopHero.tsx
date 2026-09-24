@@ -3,7 +3,11 @@ import Link from "next/link"
 
 import type { Shop } from "@/types/shop"
 
-export default function ShopHero({ shop }: { shop: Shop }) {
+type ShopHeroProps = {
+  shop: Shop
+}
+
+export default function ShopHero({ shop }: ShopHeroProps) {
   return (
     <section className="overflow-hidden rounded-3xl bg-white shadow-sm mb-6">
       <div className="grid lg:grid-cols-[1.15fr_0.85fr]">
