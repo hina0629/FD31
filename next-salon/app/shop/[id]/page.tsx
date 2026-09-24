@@ -1,5 +1,6 @@
 import ShopHero from '@/components/ShopHero'
-import { getShop } from '@/lib/services/shops'
+import ShopMenuList from '@/components/ShopMenuList'
+import { getMenus, getShop } from '@/lib/services/shops'
 import { notFound } from 'next/navigation'
 import React from 'react'
 
@@ -20,12 +21,17 @@ export default async function ShopDetailPage({ params }: Props) {
     notFound()
   }
 
+  const menus = await getMenus(id)
+
   return (
     <div>
       {/* オプショナル型 */}
       {/* 店名がなければエラーではなく、undefined を出力 */}
       {/* <h1 className="text-2xl font-bold">{shop?.name}</h1> */}
       <ShopHero shop={shop} />
+      <section>
+        <ShopMenuList menus={menus} />
+      </section>
     </div>
   )
 }
