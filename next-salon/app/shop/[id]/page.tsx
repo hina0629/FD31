@@ -1,6 +1,7 @@
 import ShopHero from '@/components/ShopHero'
 import ShopMenuList from '@/components/ShopMenuList'
-import { getMenus, getShop } from '@/lib/services/shops'
+import ShopStaffList from '@/components/ShopStaffList'
+import { getMenus, getShop, getStaffs } from '@/lib/services/shops'
 import { notFound } from 'next/navigation'
 import React from 'react'
 
@@ -21,7 +22,13 @@ export default async function ShopDetailPage({ params }: Props) {
     notFound()
   }
 
-  const menus = await getMenus(id)
+  // const menus = await getMenus(id)
+  // const staffs = await getStaffs(id)
+  // 並列でメニューとスタッフを取得するように変更
+  const [menus, staffs] = await Promise.all([
+    getMenus(id),
+    getStaffs(id),
+  ])
 
   return (
     <div>
@@ -29,8 +36,9 @@ export default async function ShopDetailPage({ params }: Props) {
       {/* 店名がなければエラーではなく、undefined を出力 */}
       {/* <h1 className="text-2xl font-bold">{shop?.name}</h1> */}
       <ShopHero shop={shop} />
-      <section>
+      <section className="mt-12 grid gap-12 lg:grid-cols-2">
         <ShopMenuList menus={menus} />
+        <ShopStaffList staffs={staffs} />
       </section>
     </div>
   )
