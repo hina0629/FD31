@@ -65,3 +65,23 @@ function bookingReducer(state: BookingState, action: BookingAction): BookingStat
       return { ...state, step: Math.max(state.step - 1, 1) }
   }
 }
+
+// BookingContextの定義
+type BookingContextValue = {
+  shopId: string
+  state: BookingState
+  // 発火するために必要
+  dispatch: React.Dispatch<BookingAction>
+}
+
+// BookingContextの作成
+const BookingContext = createContext<BookingContextValue | null>(null)
+
+// Contextを作ったらセットでProviderが必要
+export function BookingProvider({ shopId, children }: { shopId: string; children: React.ReactNode }) {
+  // useReducerを使って状態管理
+  // useStateだと項目分全て書かないといけないから、useReducerを使う
+  const [state, dispatch] = useReducer(bookingReducer, INITIAL_STATE)
+
+  return <BookingContext.Provider value={{ shopId, state, dispatch }}>{children}</BookingContext.Provider>
+}
