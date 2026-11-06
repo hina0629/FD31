@@ -85,3 +85,13 @@ export function BookingProvider({ shopId, children }: { shopId: string; children
 
   return <BookingContext.Provider value={{ shopId, state, dispatch }}>{children}</BookingContext.Provider>
 }
+
+// 他のコンポーネントから使うときは useBooking() でよびだし
+// きっかけを提供するフック（これを外部コンポーネントが使う）
+export function useBooking(): BookingContextValue {
+  const context = useContext(BookingContext)
+  if (!context) {
+    throw new Error("useBooking は BookingProvider の内側で使ってください")
+  }
+  return context
+}
