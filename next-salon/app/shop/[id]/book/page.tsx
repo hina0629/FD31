@@ -1,5 +1,6 @@
 // "use cliant"
 // useState は use cliant を書かないと使えない
+import BookingForm from '@/components/booking/BookingForm';
 import SectionHeading from '@/components/SectionHeading'
 import { getShop } from '@/lib/services/shops';
 import { notFound } from 'next/navigation';
@@ -22,6 +23,8 @@ export default async function BookingPage({params}: BookingPageProps) {
         title={`${shop.name} の予約`}
         description="メニュー・スタッフ・日時を選んで予約します。"
       />
+
+      <BookingForm />
     </div>
   )
 }
