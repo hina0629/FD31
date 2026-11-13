@@ -36,6 +36,10 @@ function BookingFlow({ menus, staffs, candidateDates, timeSlots }: BookingFlowPr
   // useContext を使って BookingContext の状態 state と dispatch を取得
   const { state, dispatch } = useBooking()
 
+  // 選択されたメニューとスタッフを取得
+  const selectedMenu = menus.find((menu) => menu.id === state.menuId)
+  const selectedStaff = staffs.find((staff) => staff.id === state.staffId)
+
   return (
     <div>
       {
