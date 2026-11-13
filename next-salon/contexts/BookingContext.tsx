@@ -34,26 +34,30 @@ export type BookingAction =
   | { type: "next" }
   | { type: "prev" }
 
-  // 「次へ」を押せるか（条件は、あとで追加する）
+// 「次へ」を押せるか（条件は、あとで追加する）
 export function canGoNext(state: BookingState): boolean {
   return state.step <= TOTAL_STEPS
 }
 
-// Renderer関数
+// Reducer関数
 function bookingReducer(state: BookingState, action: BookingAction): BookingState {
   switch (action.type) {
     // スイッチ文
     // MenuIDを選択して状態に反映する
     case "select-menu":
+      // Menu IDを選択して、状態に反映する
       return { ...state, menuId: action.menuId }
     // StaffIDを選択して状態に反映する
     case "select-staff":
+      // Staff IDを選択して、状態に反映する
       return { ...state, staffId: action.staffId }
     // Dateを選択して状態に反映する
     case "select-date":
+      // Dateを選択して、状態に反映する
       return { ...state, date: action.date }
     // Timeを選択して状態に反映する
     case "select-time":
+      // Timeを選択して、状態に反映する
       return { ...state, time: action.time }
     // Notesを変更して状態に反映する
     case "change-notes":
@@ -79,15 +83,13 @@ const BookingContext = createContext<BookingContextValue | null>(null)
 
 // Contextを作ったらセットでProviderが必要
 export function BookingProvider({ shopId, children }: { shopId: string; children: React.ReactNode }) {
-  // useReducerを使って状態管理
-  // useStateだと項目分全て書かないといけないから、useReducerを使う
+  // useReducer で状態管理
   const [state, dispatch] = useReducer(bookingReducer, INITIAL_STATE)
 
   return <BookingContext.Provider value={{ shopId, state, dispatch }}>{children}</BookingContext.Provider>
 }
 
-// 他のコンポーネントから使うときは useBooking() でよびだし
-// きっかけを提供するフック（これを外部コンポーネントが使う）
+// useBooking できっかけを提供するフック（これを外部コンポーネントが使う）
 export function useBooking(): BookingContextValue {
   const context = useContext(BookingContext)
   if (!context) {
