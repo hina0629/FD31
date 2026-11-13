@@ -10,6 +10,7 @@ import { BookingProvider, TOTAL_STEPS, canGoNext, useBooking } from "@/contexts/
 import BookingNavigation from "@/components/booking/BookingNavigation"
 import MenuStep from "./MenuStep";
 import DateTimeStep from "@/components/booking/DateTimeStep";
+import StaffStep from "@/components/booking/StaffStep";
 
 // Props の型定義
 type BookingFormProps = {
@@ -54,7 +55,13 @@ function BookingFlow({ menus, staffs, candidateDates, timeSlots }: BookingFlowPr
             onSelectTime={(time) => dispatch({ type: "select-time", time })}
           />
         )}
-      {state.step === 3 && <div>STEP 3: スタッフを選ぶ（任意）</div>}
+      {state.step === 3 && (
+          <StaffStep
+            staffs={staffs}
+            selectedStaffId={state.staffId}
+            onSelect={(staffId) => dispatch({ type: "select-staff", staffId })}
+          />
+        )}
       {state.step === 4 && <div>STEP 4: 確認して予約する</div>}
 
       <BookingNavigation
