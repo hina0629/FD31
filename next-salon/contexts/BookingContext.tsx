@@ -34,9 +34,16 @@ export type BookingAction =
   | { type: "next" }
   | { type: "prev" }
 
-// 「次へ」を押せるか（条件は、あとで追加する）
+// 各ステップで必須項目が選ばれているか
 export function canGoNext(state: BookingState): boolean {
-  return state.step <= TOTAL_STEPS
+  switch (state.step) {
+    case 1:
+      return state.menuId !== null
+    case 2:
+      return state.date !== null && state.time !== null
+    default:
+      return true
+  }
 }
 
 // Reducer関数
