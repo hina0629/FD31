@@ -1,17 +1,15 @@
 "use client"
-// rfc スニペットを使うと楽
 
 import { Menu } from "@/types/menu";
 import { Shop } from "@/types/shop";
 import { Staff } from "@/types/staff";
-
-// BookingContextインポート
-import { BookingProvider, TOTAL_STEPS, canGoNext, useBooking } from "@/contexts/BookingContext";
+import { BookingProvider, canGoNext, useBooking } from "@/contexts/BookingContext";
+import MenuStep from "@/components/booking/MenuStep"
+import DateTimeStep from "@/components/booking/DateTimeStep"
+import StaffStep from "@/components/booking/StaffStep"
+import ConfirmStep from "@/components/booking/ConfirmStep"
+import BookingSummary from "@/components/booking/BookingSummary"
 import BookingNavigation from "@/components/booking/BookingNavigation"
-import MenuStep from "./MenuStep";
-import DateTimeStep from "@/components/booking/DateTimeStep";
-import StaffStep from "@/components/booking/StaffStep";
-import ConfirmStep from "@/components/booking/ConfirmStep";
 
 // Props の型定義
 type BookingFormProps = {
@@ -41,16 +39,16 @@ function BookingFlow({ menus, staffs, candidateDates, timeSlots }: BookingFlowPr
   const selectedStaff = staffs.find((staff) => staff.id === state.staffId)
 
   return (
-    <div>
-      {
-        state.step === 1 &&
-        <MenuStep
-          menus={menus}
-          selectedMenuId={state.menuId}
-          onSelect={(menuId) => dispatch({ type: "select-menu", menuId })}
-        />
-      }
-      {state.step === 2 && (
+    <div className="grid gap-8 md:grid-cols-[1fr_320px]">
+      <div>
+        {state.step === 1 && (
+          <MenuStep
+            menus={menus}
+            selectedMenuId={state.menuId}
+            onSelect={(menuId) => dispatch({ type: "select-menu", menuId })}
+          />
+        )}
+        {state.step === 2 && (
           <DateTimeStep
             candidateDates={candidateDates}
             timeSlots={timeSlots}
@@ -60,25 +58,31 @@ function BookingFlow({ menus, staffs, candidateDates, timeSlots }: BookingFlowPr
             onSelectTime={(time) => dispatch({ type: "select-time", time })}
           />
         )}
-      {state.step === 3 && (
+        {state.step === 3 && (
           <StaffStep
             staffs={staffs}
             selectedStaffId={state.staffId}
             onSelect={(staffId) => dispatch({ type: "select-staff", staffId })}
           />
         )}
-      {state.step === 4 && (
-          <ConfirmStep
-            notes={state.notes}
-            onChangeNotes={(notes) => dispatch({ type: "change-notes", notes })}
-          />
+        {state.step === 4 && (
+          <ConfirmStep notes={state.notes} onChangeNotes={(notes) => dispatch({ type: "change-notes", notes })} />
         )}
 
-      <BookingNavigation
-        step={state.step}
-        canGoNext={canGoNext(state)}
-        onPrev={() => dispatch({ type: "prev" })}
-        onNext={() => dispatch({ type: "next" })}
+        <BookingNavigation
+          step={state.step}
+          canGoNext={canGoNext(state)}
+          onPrev={() => dispatch({ type: "prev" })}
+          onNext={() => dispatch({ type: "next" })}
+        />
+      </div>
+
+      <BookingSummary
+        selectedMenu={selectedMenu}
+        selectedStaff={selectedStaff}
+        staffId={state.staffId}
+        date={state.date}
+        time={state.time}
       />
     </div>
   )
