@@ -11,6 +11,7 @@ import BookingNavigation from "@/components/booking/BookingNavigation"
 import MenuStep from "./MenuStep";
 import DateTimeStep from "@/components/booking/DateTimeStep";
 import StaffStep from "@/components/booking/StaffStep";
+import ConfirmStep from "@/components/booking/ConfirmStep";
 
 // Props の型定義
 type BookingFormProps = {
@@ -62,7 +63,12 @@ function BookingFlow({ menus, staffs, candidateDates, timeSlots }: BookingFlowPr
             onSelect={(staffId) => dispatch({ type: "select-staff", staffId })}
           />
         )}
-      {state.step === 4 && <div>STEP 4: 確認して予約する</div>}
+      {state.step === 4 && (
+          <ConfirmStep
+            notes={state.notes}
+            onChangeNotes={(notes) => dispatch({ type: "change-notes", notes })}
+          />
+        )}
 
       <BookingNavigation
         step={state.step}
