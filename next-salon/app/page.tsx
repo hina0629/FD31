@@ -5,8 +5,13 @@ import ShopCard from "@/components/ShopCard";
 // モックデータ
 // import { MOCK_SHOPS } from "@/data/MockData";
 import { getShops } from "@/lib/services/shops";
+// firebase の認証情報を使用するためにインポート
+import { auth } from "@/lib/firebase/client"
 
 export default async function Home() {
+  // ターミナルに、Firebase コンソールと同じプロジェクト ID が出力されることを確認する
+  // console.log("projectId:", auth.app.options.projectId)
+
   // 今後APIなどから持ってくることを見越して一回 const を挟む
   // const shops = MOCK_SHOPS;
   const shops = await getShops()
